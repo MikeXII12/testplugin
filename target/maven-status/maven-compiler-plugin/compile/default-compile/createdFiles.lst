@@ -1,4 +1,8 @@
+tp/mike/config/MainConfigManager.class
 tp/mike/tools/MessageColors.class
-tp/mike/TestPlugin.class
 tp/mike/listeners/PlayerListener.class
+tp/mike/commands/ExpCommand.class
+tp/mike/commands/FlyCommand.class
+tp/mike/config/CustomConfig.class
+tp/mike/TestPlugin.class
 tp/mike/commands/MainCommand.class

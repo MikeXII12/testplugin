@@ -22,6 +22,7 @@ public class MainCommand implements CommandExecutor {
         this.plugin = plugin;
 
     }
+    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
 
@@ -47,7 +48,10 @@ public class MainCommand implements CommandExecutor {
                 sender.sendMessage(MessageColors.coloredMessage("&7- Date:" + date));
             }
             else if(args[0].equalsIgnoreCase("get")){
-
+                subCommandGet(sender, args);
+            }
+            else if(args[0].equalsIgnoreCase("reload")){
+                subCommandReload(sender);
             }
             else{
                 help(sender);
@@ -94,5 +98,15 @@ public class MainCommand implements CommandExecutor {
         else{
                 sender.sendMessage(MessageColors.coloredMessage("You have to use /TestPlugin get <author/version>"));
         }
+    }
+
+    public void subCommandReload(CommandSender sender){
+
+        if(!sender.hasPermission("testplugin.reload")){
+            sender.sendMessage(MessageColors.coloredMessage("You do not have permission to use this command"));
+            return;
+        }
+        plugin.getMainConfigManager().reloadConfig();
+        sender.sendMessage(MessageColors.coloredMessage("Configuration Reloaded"));
     }
 }

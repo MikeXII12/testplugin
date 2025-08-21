@@ -9,3 +9,7 @@ commands:
     desciption: principal commands for the TestPlugin
     aliases: 
       - mp
+  exp:
+    desciption: the command /exp give you xp
+  fly:
+    desciption: the command /fly gives you the ability to fly

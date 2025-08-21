@@ -1,5 +1,6 @@
 package tp.mike.listeners;
 
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -9,9 +10,17 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import tp.mike.TestPlugin;
+import tp.mike.config.MainConfigManager;
 import tp.mike.tools.MessageColors;
 
 public class PlayerListener implements Listener{
+
+    private TestPlugin plugin;
+
+    public PlayerListener(TestPlugin plugin){
+        this.plugin = plugin;
+    }
     // censor words
     @EventHandler
     public void OnChat(AsyncPlayerChatEvent event){
@@ -32,7 +41,17 @@ public class PlayerListener implements Listener{
         // World spawn
         Player player = event.getPlayer();
 
-        player.sendMessage(MessageColors.coloredMessage( "&cWelcome to the server"));
+        MainConfigManager mainConfigManager = plugin.getMainConfigManager();
+        if(mainConfigManager.IsWelcomeMessageEnabled()){
+
+            List<String> message = mainConfigManager.getWelcomeMessageMessage();
+
+            for(String m : message){
+
+                player.sendMessage(MessageColors.coloredMessage(m.replace("%player%", player.getName())));
+            }
+        }
+
         Location location = new Location(Bukkit.getWorld("World"), 2.5, 78, 79.5, 90, 0);
         player.teleport(location);
     }
@@ -43,7 +62,7 @@ public class PlayerListener implements Listener{
 
         if(player.getWorld().getName().equals("World") && !player.hasPermission("testplugin.admin")){
             event.setCancelled(true);
-            player.sendMessage(MessageColors.coloredMessage( "&cYou cant break anything bro"));
+            player.sendMessage(MessageColors.coloredMessage(plugin.getMainConfigManager().getPreventBlockBreak()));
         }
     }
 }

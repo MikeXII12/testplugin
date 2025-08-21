@@ -1,5 +1,6 @@
 messages:
   prevent_chat_swearing: "&cWhat a blyat"
+  prevent_world_break: "&cYou cant break any block here"
 config:
   welcome message:
     enabled: true
