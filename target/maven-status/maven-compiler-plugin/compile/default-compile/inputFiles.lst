@@ -1,8 +1,15 @@
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/tools/MessageColors.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/config/CustomConfig.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/MenuCommand.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/listeners/InventoryListener.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/managers/MenuInventoryManager.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/model/InventoryPlayer.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/ExpCommand.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/tools/ItemUtils.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/model/InventorySection.java
+/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/ItemStack.java
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/TestPlugin.java
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/MainCommand.java
-/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/config/CustomConfig.java
-/home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/ExpCommand.java
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/config/MainConfigManager.java
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/listeners/PlayerListener.java
 /home/mikey/minecraft/TestPlugin/src/main/java/tp/mike/commands/FlyCommand.java

@@ -13,3 +13,6 @@ commands:
     desciption: the command /exp give you xp
   fly:
     desciption: the command /fly gives you the ability to fly
+  menu:
+    desciption: the command /menu is the main menu command
+

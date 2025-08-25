@@ -5,7 +5,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import org.bukkit.inventory.ItemStack;
 import tp.mike.TestPlugin;
+import tp.mike.tools.ItemUtils;
 import tp.mike.tools.MessageColors;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -53,6 +55,9 @@ public class MainCommand implements CommandExecutor {
             else if(args[0].equalsIgnoreCase("reload")){
                 subCommandReload(sender);
             }
+            else if(args[0].equalsIgnoreCase("item")){
+                subCommandItem(player, args);
+            }
             else{
                 help(sender);
             }
@@ -77,13 +82,13 @@ public class MainCommand implements CommandExecutor {
     public void subCommandGet(CommandSender sender, String[] args){
 
         if (!sender.hasPermission("testplugin.get")){
-            sender.sendMessage(MessageColors.coloredMessage("You do not have permission to use this command"));
+            sender.sendMessage(MessageColors.coloredMessage("&cYou do not have permission to use this command"));
             return;
         }
 
         if(args.length == 1) {
 
-            sender.sendMessage(MessageColors.coloredMessage("You have to use /TestPlugin get <author/version>"));
+            sender.sendMessage(MessageColors.coloredMessage("&cYou have to use /TestPlugin get <author/version>"));
             return;
         }
 
@@ -96,17 +101,49 @@ public class MainCommand implements CommandExecutor {
                     "The version of this plugin is:" + plugin.getDescription().getVersion()));
         }
         else{
-                sender.sendMessage(MessageColors.coloredMessage("You have to use /TestPlugin get <author/version>"));
+                sender.sendMessage(MessageColors.coloredMessage("&cYou have to use /TestPlugin get <author/version>"));
         }
     }
 
     public void subCommandReload(CommandSender sender){
 
         if(!sender.hasPermission("testplugin.reload")){
-            sender.sendMessage(MessageColors.coloredMessage("You do not have permission to use this command"));
+            sender.sendMessage(MessageColors.coloredMessage("&cYou do not have permission to use this command"));
             return;
         }
         plugin.getMainConfigManager().reloadConfig();
-        sender.sendMessage(MessageColors.coloredMessage("Configuration Reloaded"));
+        sender.sendMessage(MessageColors.coloredMessage("&cConfiguration Reloaded"));
+    }
+
+    public void subCommandItem(Player player, String[] args){
+
+        if(!player.hasPermission("testplugin.item")){
+            player.sendMessage(MessageColors.coloredMessage("&cYou do not have permission to use this command"));
+            return;
+        }
+        
+        int amount = 1;
+        if(args.length >= 2){
+            try{
+                amount = Integer.parseInt(args[1]);
+                if(amount <= 0){
+                    player.sendMessage(MessageColors.coloredMessage("&cUse a valid amount"));
+                    return;
+                }
+            }
+            catch(NumberFormatException e){
+                player.sendMessage(MessageColors.coloredMessage("&cUse a valid amount"));
+                return;
+            }
+        }
+
+        if(player.getInventory().firstEmpty() == -1){
+            player.sendMessage(MessageColors.coloredMessage("&cYour inventory is full"));
+        }
+        else{
+            ItemStack item = ItemUtils.generateEmeraldItem(amount);
+            player.getInventory().addItem(item);
+            player.sendMessage(MessageColors.coloredMessage("&cItem Received"));
+        }
     }
 }
