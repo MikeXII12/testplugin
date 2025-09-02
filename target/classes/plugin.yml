@@ -15,4 +15,6 @@ commands:
     desciption: the command /fly gives you the ability to fly
   menu:
     desciption: the command /menu is the main menu command
+  coin:
+    desciption: the command /menu is the main menu command
 

@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -158,6 +159,7 @@ public class MenuInventoryManager {
             if(slot == 21){
                 if(!player.hasPermission("testplugin.inventory.effects")){
                     player.sendMessage(MessageColors.coloredMessage("&c You dont have permission to enter this menu"));
+                    player.playSound(player.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0f, 1.5f);
                     return;
                 }
                 openEffectInventory(inventoryPlayer);
@@ -170,12 +172,16 @@ public class MenuInventoryManager {
             else if(slot == 11){
                 player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 200, 6, false, false, true));
                 player.sendMessage(MessageColors.coloredMessage("&c You just got Jump boost 5 for 10 seconds"));
+
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.5f);
             }
             else if(slot == 15){
                 player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 200, 6, false, false, true));
                 player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 6, false, false, true));
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 200, 6, false, false, true));
                 player.sendMessage(MessageColors.coloredMessage("&c You just got the Mix Effects"));
+
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.5f);
             }
         }
     }

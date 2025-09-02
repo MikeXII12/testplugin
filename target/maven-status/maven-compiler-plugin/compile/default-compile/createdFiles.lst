@@ -6,10 +6,15 @@ tp/mike/TestPlugin.class
 tp/mike/model/InventorySection.class
 tp/mike/tools/ItemUtils.class
 tp/mike/config/MainConfigManager.class
+tp/mike/managers/PlayerDataManager.class
 tp/mike/commands/MenuCommand.class
+tp/mike/model/PlayerData.class
+tp/mike/config/PlayersConfigManager.class
 tp/mike/listeners/PlayerListener.class
 tp/mike/listeners/InventoryListener.class
 tp/mike/commands/FlyCommand.class
+tp/mike/config/DataFolderConfigManager.class
 tp/mike/commands/ItemStack.class
+tp/mike/commands/CoinCommand.class
 tp/mike/commands/MainCommand.class
 tp/mike/managers/MenuInventoryManager.class

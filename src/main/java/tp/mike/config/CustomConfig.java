@@ -19,11 +19,11 @@ public class CustomConfig {
     private String folderName;
     private boolean newFile;
 
-    public CustomConfig(String fileName, String folderName, TestPlugin plugin){
+    public CustomConfig(String fileName, String folderName, TestPlugin plugin, boolean newFile){
         this.fileName = fileName;
         this.folderName = folderName;
         this.plugin = plugin;
-        // this.newFile = newFile;
+        this.newFile = newFile;
     }
 
     public String getPath(){

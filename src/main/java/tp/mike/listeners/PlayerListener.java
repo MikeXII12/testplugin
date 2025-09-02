@@ -6,11 +6,14 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -46,6 +49,7 @@ public class PlayerListener implements Listener{
     public void OnJoin(PlayerJoinEvent event){
         // World spawn
         Player player = event.getPlayer();
+        plugin.getPlayerDataManager().updateName(player);;
 
         MainConfigManager mainConfigManager = plugin.getMainConfigManager();
         if(mainConfigManager.IsWelcomeMessageEnabled()){
@@ -60,6 +64,8 @@ public class PlayerListener implements Listener{
 
         Location location = new Location(Bukkit.getWorld("World"), 2.5, 78, 79.5, 90, 0);
         player.teleport(location);
+
+        location.getWorld().playSound(location, Sound.BLOCK_CHAIN_BREAK, 10, 1.5f);
     }
 
     @EventHandler
@@ -79,6 +85,20 @@ public class PlayerListener implements Listener{
                 ItemStack item = ItemUtils.generateEmeraldItem(1);
                 block.getWorld().dropItemNaturally(block.getLocation(), item);
             }
+        }
+    }
+
+    @EventHandler
+    public void onZombieDeath(EntityDeathEvent event){
+        if(!event.getEntity().getType().equals(EntityType.ZOMBIE)){
+            return;
+        }
+
+        Player player = event.getEntity().getKiller();
+        if(player != null){
+            int num = new Random().nextInt(10)+ 1;
+            plugin.getPlayerDataManager().addCoin(player, num);
+            player.sendMessage(MessageColors.coloredMessage("&7You just received &a"+num+" coins"));
         }
     }
 }

@@ -17,7 +17,7 @@ public class MainConfigManager {
 
     public MainConfigManager(TestPlugin plugin){
         this.plugin = plugin;
-        configFile = new CustomConfig("config.yml", null, plugin);
+        configFile = new CustomConfig("config.yml", null, plugin, welcomeMessageEnabled);
         configFile.registerConfig();
         loadConfig();
     }
